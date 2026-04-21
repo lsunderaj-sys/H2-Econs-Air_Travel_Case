@@ -12,55 +12,55 @@ const caseStudy = {
       id: "a_i", marks: 2,
       text: "(a)(i) With reference to the data in Table 1, explain the effect on the total revenue from leisure flights to UK destinations of a fall in price.",
       rubric: [
-        { mark: 1, concept: "Unitary PED", keywords: ["ped", "-1", "-1.0", "unitary", "proportionate"], positive: "✅ You correctly identified the PED value and its elasticity type.", missing: "🔍 The mark scheme requires you to explicitly state that PED = -1.0 indicates unitary price elasticity.", socratic: "What does the value '-1.0' in Table 1 tell you about how responsive quantity demanded is to price?" },
-        { mark: 1, concept: "TR unchanged", keywords: ["total revenue", "unchanged", "offset", "p x q", "price times quantity", "remains the same"], positive: "✅ You correctly linked the elasticity to the impact on total revenue.", missing: "🔍 You need to explain how the fall in price interacts with the change in quantity to affect total revenue.", socratic: "If price falls and quantity rises by the exact same percentage, what happens when you multiply them together?" }
+        { point: "PED = -1 (Unitary)", keywords: ["ped", "-1", "unitary", "proportionate"], hint: "Did you state that PED is -1.0 and what that means for quantity?" },
+        { point: "TR Unchanged", keywords: ["total revenue", "unchanged", "same", "offset", "p x q"], hint: "Did you explain that the fall in price is offset by the rise in quantity, leaving TR unchanged?" }
       ],
-      pitfalls: [{ trigger: ["revenue", "increase", "rise", "go up", "increases"], feedback: "⚠️ Careful: With unitary elasticity, total revenue does not increase when price falls. The P↓ is exactly offset by Q↑." }]
+      modelAnswer: "1. PED = -1 → unitary PED; fall in price leads to proportionate increase in quantity demanded [1m]\n2. TR = P × Q; Total revenue unchanged. [1m]"
     },
     {
       id: "a_ii", marks: 2,
       text: "(a)(ii) With reference to the data in Table 1, explain the effect on the total revenue from leisure flights to UK destinations of a fall in income.",
       rubric: [
-        { mark: 1, concept: "YED = 1.5 → Luxury", keywords: ["yed", "1.5", "luxury", "normal good", "more than proportionate"], positive: "✅ You correctly identified the income elasticity and good type.", missing: "🔍 State clearly that YED = 1.5 indicates a luxury good (YED > 1).", socratic: "Is YED = 1.5 greater or less than 1? What type of good does this imply for leisure flights?" },
-        { mark: 1, concept: "TR falls significantly", keywords: ["total revenue", "falls", "decrease", "drops", "large fall", "ceteris paribus"], positive: "✅ You correctly explained the directional impact on total revenue.", missing: "🔍 Explain how a fall in income causes a more than proportionate drop in demand, leading to a significant fall in TR.", socratic: "When demand for a luxury good falls sharply, what happens to both equilibrium price and quantity? How does that affect P × Q?" }
+        { point: "YED = 1.5 (Luxury)", keywords: ["yed", "1.5", "luxury", "more than proportionate"], hint: "Did you identify YED=1.5 as a luxury good and note the more than proportionate drop in demand?" },
+        { point: "TR Falls", keywords: ["total revenue", "falls", "decrease", "large fall"], hint: "Did you explain that both price and quantity fall, causing TR to fall significantly?" }
       ],
-      pitfalls: [{ trigger: ["revenue", "rises", "increases", "go up"], feedback: "⚠️ Incorrect: A fall in income reduces demand for a luxury good. Both price and quantity fall, so TR must decrease." }]
+      modelAnswer: "1. YED = 1.5 → luxury goods; fall in income leads to a more than proportionate decrease in demand [1m]\n2. Ceteris paribus, greater fall in demand brings about a large fall in price and quantity, so total revenue falls to a large extent. [1m]"
     },
     {
       id: "b_i", marks: 2,
       text: "(b)(i) Explain one possible reason why the demand for leisure flights to non-UK destinations is less price-elastic than that for UK destinations.",
       rubric: [
-        { mark: 1, concept: "Fewer substitutes internationally", keywords: ["substitutes", "close substitutes", "ferries", "trains", "cars", "longer time", "alternative transport", "international"], positive: "✅ You correctly noted the availability of substitutes differs by route type.", missing: "🔍 Explain that non-UK destinations have fewer close substitutes (e.g., trains/boats take too long).", socratic: "Think about the determinants of PED. How does the availability of substitutes differ between flying overseas vs flying domestically?" },
-        { mark: 1, concept: "Contrast with UK domestic", keywords: ["domestic", "uk", "trains", "cars", "close substitutes", "comparison"], positive: "✅ You effectively contrasted international vs domestic travel options.", missing: "🔍 Explicitly contrast with UK domestic travel, where rail and road are close substitutes, making demand more elastic.", socratic: "Why might trains/cars be poor substitutes for long-haul trips but good ones for short-haul?" }
+        { point: "Fewer Substitutes (Non-UK)", keywords: ["substitutes", "ferries", "trains", "cars", "longer time", "not close"], hint: "Did you mention that trains/cars are poor substitutes for long-haul international travel?" },
+        { point: "Close Substitutes (UK)", keywords: ["uk", "domestic", "close substitutes", "comparison"], hint: "Did you contrast this with UK domestic travel where trains/cars ARE close substitutes?" }
       ],
-      pitfalls: [{ trigger: ["price", "expensive", "cost"], feedback: "⚠️ Focus on elasticity determinants (substitutes), not just absolute price levels." }]
+      modelAnswer: "1. Fewer close substitutes for leisure flights to non-UK destinations; Ferries, trains and cars take a much longer time compared to flights for travel outside the UK and are not close substitutes [1m]\n2. In comparison, other modes of transport to travel within UK (e.g. trains, cars) are close substitutes for leisure flights within UK [1m]"
     },
     {
       id: "b_ii", marks: 2,
       text: "(b)(ii) Explain one possible reason why the income elasticity of demand for business flights to UK destinations is higher than that for non-UK destinations.",
       rubric: [
-        { mark: 1, concept: "Necessity vs discretion", keywords: ["necessity", "discretionary", "less necessary", "local", "easier communication"], positive: "✅ You correctly linked YED differences to the degree of necessity.", missing: "🔍 Higher YED means lower necessity. Explain why UK business travel is more discretionary.", socratic: "Higher YED usually means a good is less of a necessity. Why might a business *need* to fly overseas more than domestically?" },
-        { mark: 1, concept: "Physical presence/market info", keywords: ["foreign", "international", "market", "physical presence", "information", "familiarise", "communication"], positive: "✅ You correctly explained the role of market familiarity in business travel decisions.", missing: "🔍 Explain that non-UK business travel requires physical presence to gather foreign market information, making it more necessary (lower YED).", socratic: "How does familiarity with local markets affect the necessity of physical travel?" }
+        { point: "Necessity / Familiarity", keywords: ["necessity", "familiar", "local market", "communicated easily"], hint: "Did you explain that UK business travel is less necessary because information can be communicated easily locally?" },
+        { point: "Physical Presence (Non-UK)", keywords: ["physical presence", "foreign", "gather information", "familiarize"], hint: "Did you note that non-UK travel is more necessary for physical presence in foreign markets?" }
       ],
-      pitfalls: [{ trigger: ["income", "rich", "poor"], feedback: "⚠️ YED measures responsiveness to income changes, not who can afford it. Focus on necessity vs discretion." }]
+      modelAnswer: "1. Higher income elasticity implies lower degree of necessity [1m]\n2. Less need to make a flight to local UK destination for business because business information can be communicated more easily within the UK due to familiarity with the local market, whereas a business flight to non-UK destinations may be more necessary since businesses need to have physical presence in foreign countries to familiarize themselves with the foreign markets, and to gather information [1m]"
     },
     {
       id: "c", marks: 2,
       text: "(c) Explain the likely value of the cross-elasticity of demand between high-speed rail travel and air travel.",
       rubric: [
-        { mark: 1, concept: "CED definition + sign", keywords: ["ced", "cross elasticity", "responsiveness", "price of good b", "demand for good a", "positive", "substitutes"], positive: "✅ You correctly defined CED and identified the relationship type.", missing: "🔍 Define CED and state that rail and air are substitutes, so CED is positive.", socratic: "How do you define cross-elasticity in economic terms? Are rail and air substitutes or complements?" },
-        { mark: 1, concept: "Small magnitude (<1)", keywords: ["small", "less than 1", "<1", "short-haul", "domestic", "not close", "limited substitution"], positive: "✅ You correctly explained why the elasticity value is likely small.", missing: "🔍 Explain that CED is small (<1) because rail only substitutes air on short-haul/domestic routes, not long-haul.", socratic: "Can rail replace air for *all* journeys? How does this limitation affect the magnitude of the elasticity?" }
+        { point: "Definition & Sign", keywords: ["ced", "cross elasticity", "responsiveness", "positive", "substitutes"], hint: "Did you define CED and state that it is positive because they are substitutes?" },
+        { point: "Magnitude (Small)", keywords: ["small", "less than 1", "short-haul", "domestic", "not close"], hint: "Did you explain that the value is small because rail only substitutes air on short-haul/domestic trips?" }
       ],
-      pitfalls: [{ trigger: ["negative", "complements", "inversely"], feedback: "⚠️ Rail and air compete for passengers on the same routes. They are substitutes, not complements." }]
+      modelAnswer: "1. Definition of CED: degree of responsiveness of demand of Good A to a change in the price of Good B, ceteris paribus [1m]\n2. Extract 1 → 'scope for a significant shift to high-speed rail... reduce demand for air travel' → Substitutes; CED value is likely to be positive, but small since they are not close substitutes as long-haul trips are not likely substituted with rail travel [1m]"
     },
     {
       id: "d", marks: 2,
       text: "(d) Explain either one demand or one supply factor that has led to a rise in VFR travel.",
       rubric: [
-        { mark: 1, concept: "Identify factor + extract ref", keywords: ["demand", "supply", "migration", "labour mobility", "deregulation", "liberalisation", "restrictions", "extract"], positive: "✅ You correctly identified a relevant factor from the extracts.", missing: "🔍 Explicitly state whether you're analyzing a demand or supply factor, and reference the relevant extract phrase.", socratic: "Pick ONE factor. What specific phrase in Extract 4 points to it?" },
-        { mark: 1, concept: "Full economic chain", keywords: ["shortage", "surplus", "price", "quantity", "dd↑", "ss↑", "shift", "equilibrium", "rise in vfr"], positive: "✅ You provided a clear chain of economic reasoning.", missing: "🔍 Show the full mechanism: Factor → Curve shift → Shortage/Surplus → Price change → Quantity change.", socratic: "How does this factor shift the demand or supply curve? What market mechanism follows, and how does it ultimately increase VFR travel?" }
+        { point: "Factor Identification", keywords: ["migration", "labour mobility", "deregulation", "liberalisation", "restrictions"], hint: "Did you identify a specific factor from Extract 4 (e.g., migration or deregulation)?" },
+        { point: "Economic Chain", keywords: ["dd", "ss", "shift", "shortage", "surplus", "price", "quantity"], hint: "Did you show the chain: Factor → Shift in DD/SS → Shortage/Surplus → Price Change → Rise in VFR travel?" }
       ],
-      pitfalls: [{ trigger: ["just because", "people want to", "more flights"], feedback: "⚠️ H2 examiners require precise economic terminology. Use 'willingness/ability to pay' or 'producer constraints' instead of casual phrasing." }]
+      modelAnswer: "Demand Factor:\n1. Extract 4 'Rise in labour mobility and migration' → Rise in consumer willingness to travel abroad to visit friends/relatives working overseas in order to stay connected [1m]\n2. ↑DD → shortage → ↑price that increases Qs to meet increased demand → rise in VFR travel [1m]\n\nSupply Factor:\n1. Extract 4 'relaxation of regulatory restrictions...' → greater ability of producers to offer flight service as there are less restrictions to hinder their production [1m]\n2. ↑SS → surplus → ↓price that increases Qd to meet greater supply → rise in VFR travel [1m]"
     }
   ]
 };
