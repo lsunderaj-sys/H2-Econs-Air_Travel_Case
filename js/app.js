@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const extractsContainer = document.getElementById('extracts');
   const questionsContainer = document.getElementById('questions');
 
-  // Render Extracts
+  // Render Extracts & Table
   if (caseStudy.extracts) {
     caseStudy.extracts.forEach(ext => {
       const div = document.createElement('div');
@@ -11,8 +11,6 @@ document.addEventListener('DOMContentLoaded', () => {
       extractsContainer.appendChild(div);
     });
   }
-
-  // Render Table
   const tableDiv = document.createElement('div');
   tableDiv.className = 'extract-card';
   tableDiv.innerHTML = `<h3>Table 1: Elasticities</h3>${caseStudy.tableHTML}`;
@@ -23,11 +21,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const card = document.createElement('div');
     card.className = 'question-card';
     card.innerHTML = `
-      <h3>Question ${q.id}</h3>
+      <h3>Question ${q.id} <span class="marks-badge">[${q.marks} marks]</span></h3>
       <p class="q-text">${q.text}</p>
-      <textarea id="ans-${q.id}" placeholder="Type your answer here. Focus on economic concepts, data references, and logical chains of reasoning."></textarea>
+      <textarea id="ans-${q.id}" placeholder="Draft your answer here. Focus on economic concepts, data references, and logical chains of reasoning."></textarea>
       <div class="btn-group">
-        <button class="btn submit-btn" data-qid="${q.id}">Generate Feedback</button>
+        <button class="btn submit-btn" data-qid="${q.id}">Review & Get Guidance</button>
         <button class="btn reset-btn" data-qid="${q.id}">Clear</button>
       </div>
       <div id="feedback-${q.id}" class="feedback hidden"></div>
@@ -35,7 +33,7 @@ document.addEventListener('DOMContentLoaded', () => {
     questionsContainer.appendChild(card);
   });
 
-  // Attach Event Listeners
+  // Event Listeners
   document.querySelectorAll('.submit-btn').forEach(btn => {
     btn.addEventListener('click', handleFeedback);
   });
@@ -55,53 +53,48 @@ function handleFeedback(e) {
   const feedbackBox = document.getElementById(`feedback-${qid}`);
 
   if (!answer) {
-    alert("Please type an answer before generating feedback.");
+    alert("Please draft an answer before requesting feedback.");
     return;
   }
 
-  const analysis = analyzeAnswer(answer.toLowerCase(), question.guidelines);
+  const guidance = generateSocraticFeedback(answer.toLowerCase(), question);
   
   feedbackBox.classList.remove('hidden');
   feedbackBox.innerHTML = `
     <div class="feedback-section">
-      <h4>📝 Feedback Report</h4>
-      <ul class="feedback-list">${analysis.feedback.map(item => `<li>${item}</li>`).join('')}</ul>
+      <h4>🔍 Self-Assessment Guide</h4>
+      ${guidance.status}
+      <div class="socratic-prompts">
+        <h5>❓ Guiding Questions</h5>
+        <ul>${guidance.prompts.map(p => `<li>${p}</li>`).join('')}</ul>
+      </div>
+      <div class="examiner-checklist">
+        <h5>📋 Examiner's Checklist for 2/2 Marks</h5>
+        <ul>${question.checklist.map(c => `<li>☐ ${c}</li>`).join('')}</ul>
+      </div>
+      <p class="refine-tip">💡 <strong>Next Step:</strong> Refine your draft using the questions and checklist above. Then submit again to track your progress.</p>
     </div>
-    <details class="examiner-details">
-      <summary>👨‍🏫 Examiner Guidance & Model Answer</summary>
-      <p><strong>💡 Examiner Focus:</strong> ${question.guidelines.examinerTips}</p>
-      <p><strong>📖 Model Answer:</strong> ${question.guidelines.modelAnswer}</p>
-      <p class="note">Note: H2 Economics marks are awarded for <strong>Knowledge + Application + Analysis</strong>. This tool checks for concept coverage and extract referencing. In exams, precise diagram labels and logical chains of reasoning are also required.</p>
-    </details>
   `;
 }
 
-function analyzeAnswer(answerText, guidelines) {
-  const matchedConcepts = guidelines.keyConcepts.filter(c => answerText.includes(c.toLowerCase()));
-  const matchedData = guidelines.applicationCues.filter(d => answerText.includes(d.toLowerCase()));
-  const missingConcepts = guidelines.keyConcepts.filter(c => !answerText.includes(c.toLowerCase()));
-
-  const feedback = [];
+function generateSocraticFeedback(answerText, question) {
+  const matchedConcepts = question.keyConcepts.filter(c => answerText.includes(c.toLowerCase()));
+  const wordCount = answerText.split(/\s+/).length;
   
-  if (matchedConcepts.length >= 2) {
-    feedback.push(`✅ <strong>Strong conceptual understanding:</strong> You correctly referenced <em>${matchedConcepts.slice(0, 3).join(', ')}</em>.`);
-  } else if (matchedConcepts.length === 1) {
-    feedback.push(`🔸 <strong>Concept identified:</strong> You mentioned <em>${matchedConcepts[0]}</em>, which is a good start.`);
+  let status = '';
+  if (matchedConcepts.length >= 3) {
+    status = `<p class="status-good">✅ You've included several key economic concepts. Now check if your explanation forms a complete logical chain.</p>`;
+  } else if (matchedConcepts.length >= 1) {
+    status = `<p class="status-partial">🔸 You've started with relevant concepts. Use the guiding questions below to strengthen your analysis.</p>`;
   } else {
-    feedback.push(`⚠️ <strong>Missing core concepts:</strong> Your answer doesn't yet include the key economic terms expected.`);
+    status = `<p class="status-missing">⚠️ Your draft lacks the core economic terminology expected for this question. Review the checklist and guiding questions.</p>`;
   }
 
-  if (matchedData.length > 0) {
-    feedback.push(`📊 <strong>Good application:</strong> You referenced relevant data/context (<em>${matchedData.join(', ')}</em>).`);
-  } else {
-    feedback.push(`💡 <strong>Improvement tip:</strong> Explicitly reference the table/extracts (e.g., "Table 1 shows...", "Extract 1 states...") to secure Application marks.`);
+  // Filter prompts based on missing concepts
+  let prompts = question.socratic;
+  if (wordCount < 15) {
+    prompts = ["Your answer is quite brief. How can you expand it to explain the economic mechanism clearly?", ...prompts];
   }
 
-  if (missingConcepts.length > 0 && missingConcepts.length <= 3) {
-    feedback.push(`🔄 <strong>To strengthen:</strong> Consider incorporating <em>${missingConcepts.slice(0, 3).join(', ')}</em> to build a more complete explanation.`);
-  } else if (missingConcepts.length > 3) {
-    feedback.push(`🔄 <strong>To strengthen:</strong> Focus on building a logical chain: Concept → Data reference → Economic outcome.`);
-  }
-
-  return { feedback };
+  return { status, prompts };
 }
